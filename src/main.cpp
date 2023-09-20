@@ -12,10 +12,10 @@
    Robot Configuration: 4 Motor Tank Drive
    [Name]               [Type]        [Port(s)]
    Controller1          controller
-   LeftFrontMotor            motor      2
-   LeftBackMotor            motor      1
-   RightFrontMotor           motor      4
-   RightBackMotor           motor      3
+   LeftFrontMotor            motor      18
+   LeftBackMotor            motor      20
+   RightFrontMotor           motor      17
+   RightBackMotor           motor      19
 
    ---- END VEXCODE DEVICES ----   */
 
