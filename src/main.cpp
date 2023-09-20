@@ -27,7 +27,8 @@ int main() {
   vexcodeInit();
 
   int deadband = 5;
-
+  
+//Below this text is the 4 motor tank drivebase which moves and controls the robot.
   while (true) {
     int leftMotorSpeed = Controller1.Axis3.position();
     int rightMotorSpeed = Controller1.Axis2.position();
