@@ -2,7 +2,7 @@
      Module:       main.cpp                                                   
      Author:       Josh Moller   
      Team:         SuperiorSnake (7842S)         
-     Members:      Josh Moller, Henry, Dio                                       
+     Members:      Josh Moller, Henry Huynh, Dio Hsieh                                       
      Created:      Tue Sep 12 2023                                           
      Description:  This is our robot for the 2023/24 OverUnder
                    It has a 4 motor tank drive base.
@@ -27,7 +27,7 @@ int main() {
   vexcodeInit();
 
   int deadband = 5;
-  
+
 //Below this text is the 4 motor tank drivebase which moves and controls the robot.
   while (true) {
     int leftMotorSpeed = Controller1.Axis3.position();
