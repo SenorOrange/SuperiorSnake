@@ -21,13 +21,21 @@
 
 #include "vex.h"
 
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// LeftMotor            motor_group   18, 20          
+// RightMotor           motor_group   17, 19          
+// Arm                  motor         14              
+// Controller1          controller                    
+// ---- END VEXCODE CONFIGURED DEVICES ----
+
 using namespace vex;
 
 int main() {
   vexcodeInit();
 
   int deadband = 5;
-
 //Below this text is the 4 motor tank drivebase which moves and controls the robot.
   while (true) {
     int leftMotorSpeed = Controller1.Axis3.position();
@@ -49,5 +57,8 @@ int main() {
     RightMotor.spin(forward);
 
     wait(25, msec);
+
+
   }
+  
 }
