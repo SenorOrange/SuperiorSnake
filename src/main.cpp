@@ -1,6 +1,6 @@
 /*                                                                          
      Module:       main.cpp                                                   
-     Author:       Josh Moller   
+     Author:       Moller, Josh   
      Team:         SuperiorSnake (7842S)         
      Members:      Josh Moller, Henry Huynh, Dio Hsieh                                       
      Created:      Tue Sep 12 2023                                           
@@ -24,9 +24,9 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// LeftMotor            motor_group   18, 20          
-// RightMotor           motor_group   17, 19          
-// Arm                  motor         14              
+// LeftMotor            motor_group   9, 10           
+// RightMotor           motor_group   1, 2            
+// Arm                  motor         4               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
@@ -36,7 +36,8 @@ int main() {
   vexcodeInit();
 
   int deadband = 5;
-//Below this text is the 4 motor tank drivebase which moves and controls the robot.
+
+    //Below this text is the 4 motor tank drivebase which moves and controls the robot.
   while (true) {
     int leftMotorSpeed = Controller1.Axis3.position();
     int rightMotorSpeed = Controller1.Axis2.position();
@@ -58,7 +59,13 @@ int main() {
 
     wait(25, msec);
 
+    //Future code for the Arm (endgame)
+    if(Controller1.ButtonR1.pressing()) {
+      Arm.spin(forward);
+    } else {
+      Arm.stop();
+    }
 
   }
-  
+    
 }
