@@ -24,8 +24,8 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// LeftMotor            motor_group   9, 10           
-// RightMotor           motor_group   1, 2            
+// LeftMotor            motor_group   7, 11           
+// RightMotor           motor_group   20, 18          
 // Arm                  motor         4               
 // Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
