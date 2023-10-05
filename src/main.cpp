@@ -12,10 +12,10 @@
    Robot Configuration: 4 Motor Tank Drive
    [Name]               [Type]        [Port(s)]
    Controller1          controller
-   LeftFrontMotor            motor      18
-   LeftBackMotor            motor      20
-   RightFrontMotor           motor      17
-   RightBackMotor           motor      19
+   LeftFrontMotor            motor      7
+   LeftBackMotor            motor      11
+   RightFrontMotor           motor      20
+   RightBackMotor           motor      18
 
    ---- END VEXCODE DEVICES ----   */
 
@@ -26,8 +26,8 @@
 // [Name]               [Type]        [Port(s)]
 // LeftMotor            motor_group   7, 11           
 // RightMotor           motor_group   20, 18          
-// Arm                  motor         4               
 // Controller1          controller                    
+// Arms                 motor_group   1, 10           
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 using namespace vex;
@@ -61,9 +61,9 @@ int main() {
 
     //Future code for the Arm (endgame)
     if(Controller1.ButtonR1.pressing()) {
-      Arm.spin(forward);
+      Arms.spin(forward);
     } else {
-      Arm.stop();
+      Arms.stop();
     }
 
   }
