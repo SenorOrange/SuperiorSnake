@@ -32,11 +32,30 @@
 
 using namespace vex;
 
-int main() {
+competition Competition;
+
+//Pre Autonomous Code
+void pre_auton(void) {
+
+  vexcodeInit();
+}
+
+//Autonomous Code
+void autonomous(void) {
+  RightMotor.spinTo(100, deg, 100, rpm, false);
+  LeftMotor.rotateTo(100, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-100, deg, 100, rpm, false);
+  LeftMotor.rotateTo(-100, deg, 100, rpm);
+}
+
+//User Control Code
+void usercontrol(void) {
   vexcodeInit();
 
   int deadband = 5;
-
     //Below this text is the 4 motor tank drivebase which moves and controls the robot.
   while (true) {
     int leftMotorSpeed = Controller1.Axis3.position();
