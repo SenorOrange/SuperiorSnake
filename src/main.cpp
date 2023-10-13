@@ -37,24 +37,26 @@ competition Competition;
 //Pre Autonomous Code
 void pre_auton(void) {
 
+  int (main);
   vexcodeInit();
 }
 
 //Autonomous Code
 void autonomous(void) {
+  int (main);
   RightMotor.spinTo(100, deg, 100, rpm, false);
-  LeftMotor.rotateTo(100, deg, 100, rpm);
+  LeftMotor.spinTo(100, deg, 100, rpm);
   wait(1, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   RightMotor.spinTo(-100, deg, 100, rpm, false);
-  LeftMotor.rotateTo(-100, deg, 100, rpm);
+  LeftMotor.spinTo(-100, deg, 100, rpm);
 }
 
 //User Control Code
 void usercontrol(void) {
   vexcodeInit();
-
+  int (main);
   int deadband = 5;
     //Below this text is the 4 motor tank drivebase which moves and controls the robot.
   while (true) {
