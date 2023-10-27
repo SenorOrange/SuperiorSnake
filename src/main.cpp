@@ -109,15 +109,19 @@ void usercontrol(void) {
     LeftMotor.spin(forward);
     RightMotor.spin(forward);
 
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
-
-    //Future code for the Arm (endgame)
+    //Reverse
     if(Controller1.ButtonR1.pressing()) {
-      Arms.spin(forward);
-    } else {
+      Arms.spin(forward, 100, pct);
+    }
+    if(Controller1.ButtonL1.pressing()) {
+      Arms.spin(reverse, 100, pct);
+    }
+    if(Controller1.ButtonR2.pressing()) {
       Arms.stop();
     }
+
+    wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
+
 
   }
 
