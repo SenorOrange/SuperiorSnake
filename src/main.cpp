@@ -109,7 +109,7 @@ void usercontrol(void) {
     LeftMotor.spin(forward);
     RightMotor.spin(forward);
 
-    //Reverse
+    //Intake Forward and Reverse, Press R2 to stop
     if(Controller1.ButtonR1.pressing()) {
       Arms.spin(forward, 100, pct);
     }
