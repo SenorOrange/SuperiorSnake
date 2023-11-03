@@ -2,7 +2,7 @@
      Module:       main.cpp                                                   
      Author:       Moller, Josh   
      Team:         SuperiorSnake (7842S)         
-     Members:      Josh Moller, Henry Huynh, Dio Hsieh                                       
+     Members:      Josh Moller (Master Oogway), Henry Huynh (Tai Lung), Brandon McDoonnell (Dragon Warrior)                                     
      Created:      Tue Sep 12 2023                                           
      Description:  This is our robot for the 2023/24 OverUnder
                    It has a 4 motor tank drive base.
