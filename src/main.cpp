@@ -122,23 +122,21 @@ void usercontrol(void) {
       Arms.stop();
     }
 
-    
-
 
     //Launcher Code
+
     //Pick Up Ball
-    if(Controller1.ButtonA.pressing()) {
+    if(Controller1.ButtonL2.pressing()) {
       Launcher.spinTo(10, deg);
       Launcher.resetPosition();
     }
 
     //Launch Ball and Reset Launcher
-    if(Controller1.ButtonB.pressing()) {
-      Launcher.spinTo(90, deg);
+    if(Controller1.ButtonR2.pressing()) {
+      Launcher.spinTo(90, deg, 9000, rpm, true);
       wait(1, sec);
-      Launcher.spinTo(-90, deg, 200, rpm);
-      Launcher.resetPosition();
-      Launcher.stop();
+      Launcher.spinTo(90, deg, 100, rpm, true);
+      
     } 
 
     wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.

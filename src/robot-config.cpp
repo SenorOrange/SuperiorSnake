@@ -18,9 +18,10 @@ controller Controller1 = controller(primary);
 motor ArmsMotorA = motor(PORT1, ratio18_1, true);
 motor ArmsMotorB = motor(PORT10, ratio18_1, false);
 motor_group Arms = motor_group(ArmsMotorA, ArmsMotorB);
-motor BackMotorA = motor(PORT19, ratio6_1 true);
-//motor BackMotorB = motor(PORT16, ratio18_1, false);
-motor_group Launcher = motor_group(BackMotorA);
+motor Launcher = motor(PORT19, ratio6_1, true);
+
+
+
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
