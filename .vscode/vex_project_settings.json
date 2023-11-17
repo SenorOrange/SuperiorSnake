@@ -1,10 +1,10 @@
 {
 	"project": {
-		"name": "AutoTest",
-		"slot": 2,
+		"name": "SuperiorSnake",
+		"slot": 1,
 		"description": "SuperiorSnake V5 C++",
 		"platform": "V5",
-		"creationDate": "Wed, 08 Nov 2023 01:14:27 GMT",
+		"creationDate": "Fri, 10 Nov 2023 00:11:16 GMT",
 		"language": "cpp",
 		"sdkVersion": "V5_20220726_10_00_00",
 		"cpp": {
@@ -12,7 +12,7 @@
 		}
 	},
 	"extension": {
-		"version": "0.5.0",
+		"version": "0.1.4",
 		"json": 1
 	}
 }
