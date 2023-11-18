@@ -7,7 +7,7 @@ extern motor_group LeftMotor;
 extern motor_group RightMotor;
 extern controller Controller1;
 extern motor_group Arms;
-extern motor_group Launcher;
+extern motor Launcher;
 
 
 /**
