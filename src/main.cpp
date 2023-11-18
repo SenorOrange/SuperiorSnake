@@ -111,20 +111,16 @@ void usercontrol(void) {
 
     //Intake Forward and Reverse
     if(Controller1.ButtonR1.pressing()) {
-      Arms.spin(forward, 100, pct);
+      Arms.spin(forward, 200, rpm);
     } else {
       if(Controller1.ButtonL1.pressing()) {
-        Arms.spin(reverse, 100, pct);
+        Arms.spin(reverse, 200, rpm);
       } else {
         Arms.stop();
       }
     }
 
-    //if(Controller1.ButtonL1.pressing()) {
-    //  Arms.spin(reverse, 100, pct);
-    //} else {
-    //  Arms.stop();
-    //}
+    
 
     
 
@@ -132,16 +128,17 @@ void usercontrol(void) {
     //Launcher Code
     //Pick Up Ball
     
-
+/*/
     //Launch Ball and Reset Launcher
     if(Controller1.ButtonB.pressing()) {
+      Arms.spinTo(10000, deg, 200, rpm, false);
+      wait(0.5, sec);
       Launcher.resetPosition();
-      Launcher.spinTo(800, deg, 200, rpm, true);
+      Launcher.spinTo(800, deg, 50, rpm, true);
       wait(1, sec);
-      Launcher.spinTo(-1, deg, 200, rpm, true);
-      
-      
-    } 
+      Launcher.spinTo(-200, deg, 50, rpm, false);
+      Arms.stop(); 
+    } */
 
     wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
 
