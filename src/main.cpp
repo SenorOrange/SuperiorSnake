@@ -68,13 +68,40 @@ void pre_auton(void) {
 
 void autonomous(void) {
  int (main);
-  RightMotor.spinTo(100, deg, 100, rpm, false);
-  LeftMotor.spinTo(100, deg, 100, rpm);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  Arms.resetPosition();
+ //straight
+  RightMotor.spinTo(390, deg, 100, rpm, false);
+  LeftMotor.spinTo(390, deg, 100, rpm);
   wait(1, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
-  RightMotor.spinTo(-100, deg, 100, rpm, false);
-  LeftMotor.spinTo(-100, deg, 100, rpm);
+  //turn right
+  RightMotor.spinTo(-220, deg, 100, rpm, false);
+  LeftMotor.spinTo(220, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //straight
+  RightMotor.spinTo(250, deg, 100, rpm, false);
+  LeftMotor.spinTo(250, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //turn right
+  RightMotor.spinTo(220, deg, 100, rpm, false);
+  LeftMotor.spinTo(-220, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //straight
+  RightMotor.spinTo(200, deg, 100, rpm, false);
+  LeftMotor.spinTo(2000, deg, 100, rpm);
+  wait(1, sec);
+  
+  wait(1, sec);
+  Arms.spinTo(2009, degrees);
 }
 
 /*---------------------------------------------------------------------------*/

@@ -18,9 +18,9 @@ controller Controller1 = controller(primary);
 motor ArmsMotorA = motor(PORT12, ratio18_1, true);
 motor ArmsMotorB = motor(PORT11, ratio18_1, false);
 motor_group Arms = motor_group(ArmsMotorA, ArmsMotorB);
-motor LauncherA = motor(PORT19, ratio36_1, true);
+//motor LauncherA = motor(PORT19, ratio36_1, true);
 //motor LauncherB = motor(PORT18, ratio18_1, false);
-motor_group Launcher = motor_group(LauncherA);
+//motor_group Launcher = motor_group(LauncherA);
 
 
 // VEXcode generated functions
