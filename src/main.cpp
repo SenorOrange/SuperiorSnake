@@ -118,24 +118,17 @@ void usercontrol(void) {
   int (main);
   int deadband = 5;
   while (1) {
-    int leftMotorSpeed = Controller1.Axis3.position();
-    int rightMotorSpeed = Controller1.Axis2.position();
 
-    if (abs(leftMotorSpeed) < deadband) {
-      LeftMotor.setVelocity(0, percent);
-    } else {
-      LeftMotor.setVelocity(leftMotorSpeed, percent);
-    }
+    int leftY = Controller1.Axis3.position();
+    int rightX = Controller1.Axis4.position();
+        
+        // Move the left side of the robot
+        LeftMotor.spin(forward, leftY + rightX, pct);
+        
+        // Move the right side of the robot 
+        RightMotor.spin(forward, leftY - rightX, pct);
 
-    if (abs(rightMotorSpeed) < deadband) {
-      RightMotor.setVelocity(0, percent);
-    } else {
-      RightMotor.setVelocity(rightMotorSpeed, percent);
-    }
-
-    LeftMotor.spin(forward);
-    RightMotor.spin(forward);
-
+    
     //Intake Forward and Reverse
     if(Controller1.ButtonR1.pressing()) {
       Arms.spin(forward, 200, rpm);

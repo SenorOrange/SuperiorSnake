@@ -8,7 +8,10 @@ extern motor_group RightMotor;
 extern controller Controller1;
 extern motor_group Arms;
 extern motor Launcher;
-
+extern motor LeftMotorMotorA;
+extern motor LeftMotorMotorB;
+extern motor RightMotorMotorA;
+extern motor RightMotorMotorB;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
