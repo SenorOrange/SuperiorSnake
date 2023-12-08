@@ -77,6 +77,7 @@ void selectAuton() {
   if (x >= 170 && x <= 270 && y >= 50 && y <= 150) {
     selectingAuton = false; // GO button pressed
     Brain.Screen.printAt(1, 200, "Auton  =  %d   GO           ", AutonSelected);
+    //Autonomous();
   }
   if (!selectingAuton) {
     Brain.Screen.setFillColor(green);
