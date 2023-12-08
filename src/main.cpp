@@ -33,10 +33,61 @@
 
 using namespace vex;
 
+int AutonSelected = 0;
+int AutonMin = 0;
+int AutonMax = 4;
+
 // A global instance of competition
 competition Competition;
 
 // define your global instances of motors and other devices here
+
+//Auton Select Stuff
+
+void drawGUI() {
+  Brain.Screen.clearScreen();
+  Brain.Screen.printAt(1, 40, "Select Auton then Press Go");
+  Brain.Screen.printAt(1, 200, "Auton Selected =  %d   ");
+  Brain.Screen.setFillColor(red);
+  Brain.Screen.drawRectangle(20, 50, 100, 100);
+  Brain.Screen.drawCircle(300, 75, 25);
+  Brain.Screen.printAt(25, 75, "Select");
+  Brain.Screen.setFillColor(green);
+  Brain.Screen.drawRectangle(170, 50, 100, 100);
+  Brain.Screen.printAt(175, 75, "GO");
+  Brain.Screen.setFillColor(black);
+}
+
+void selectAuton() {
+  bool selectingAuton = true;
+  
+
+  int x = Brain.Screen.xPosition(); // get the x position of last touch of the screen
+  int y = Brain.Screen.yPosition(); // get the y position of last touch of the screen
+  // check to see if buttons were pressed
+  if (x >= 20 && x <= 120 && y >= 50 && y <= 150) // select button pressed
+  {
+    AutonSelected++;
+    if (AutonSelected > AutonMax)AutonSelected = AutonMin; // rollover
+      
+    Brain.Screen.printAt(1, 200, "Auton Selected =  %d   ", AutonSelected);
+
+
+  }
+  if (x >= 170 && x <= 270 && y >= 50 && y <= 150) {
+    selectingAuton = false; // GO button pressed
+    Brain.Screen.printAt(1, 200, "Auton  =  %d   GO           ", AutonSelected);
+  }
+  if (!selectingAuton) {
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawCircle(300, 75, 25);
+  } else {
+    Brain.Screen.setFillColor(red);
+    Brain.Screen.drawCircle(300, 75, 25);
+  }
+  wait(10, msec); // slow it down
+  Brain.Screen.setFillColor(black);
+}
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -51,10 +102,14 @@ competition Competition;
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-
-  // All activities that occur before the competition starts
-  // Example: clearing encoders, setting servo positions, ...
+  Brain.Screen.setFont(monoM); 
+  Brain.Screen.printAt(1, 40, "pre auton is running");
+  drawGUI();
+  Brain.Screen.pressed(selectAuton);
 }
+
+
+
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
@@ -65,8 +120,58 @@ void pre_auton(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
-
 void autonomous(void) {
+  switch (AutonSelected) {
+  case 0:
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  Arms.resetPosition();
+ //straight
+  RightMotor.spinTo(390, deg, 100, rpm, false);
+  LeftMotor.spinTo(390, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //turn right
+  RightMotor.spinTo(-220, deg, 100, rpm, false);
+  LeftMotor.spinTo(220, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //straight
+  RightMotor.spinTo(250, deg, 100, rpm, false);
+  LeftMotor.spinTo(250, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //turn right
+  RightMotor.spinTo(220, deg, 100, rpm, false);
+  LeftMotor.spinTo(-220, deg, 100, rpm);
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //straight
+  RightMotor.spinTo(200, deg, 100, rpm, false);
+  LeftMotor.spinTo(2000, deg, 100, rpm);
+  wait(1, sec);
+  
+  wait(1, sec);
+  Arms.spinTo(2009, degrees);
+  break;
+    case 1:
+  RightMotor.spin(forward, 1000, pct);
+  break;
+    case 2:
+  RightMotor.spin(reverse, 1000, pct);
+  break;
+    case 3:
+  //code 3
+  break;
+  }
+}
+
+
+/*void autonomous(void) {
  int (main);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
@@ -102,7 +207,7 @@ void autonomous(void) {
   
   wait(1, sec);
   Arms.spinTo(2009, degrees);
-}
+}*/
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
@@ -139,6 +244,15 @@ void usercontrol(void) {
         Arms.stop();
       }
     }
+    
+    //Spinner Code
+    if (Controller1.ButtonB.pressing())
+    {
+      Spinner.spin(forward, 200, rpm);
+    } else {
+      Spinner.stop();
+    }
+    
 
     
 

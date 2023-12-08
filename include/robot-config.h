@@ -12,6 +12,8 @@ extern motor LeftMotorMotorA;
 extern motor LeftMotorMotorB;
 extern motor RightMotorMotorA;
 extern motor RightMotorMotorB;
+extern motor Spinner;
+
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
