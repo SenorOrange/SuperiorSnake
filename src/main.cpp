@@ -162,7 +162,7 @@ void autonomous(void) {
   RightMotor.spin(forward, 1000, pct);
   break;
     case 2:
-  RightMotor.spin(reverse, 1000, pct);
+  LeftMotor.spin(reverse, 1000, pct);
   break;
     case 3:
   //code 3
@@ -224,16 +224,35 @@ void usercontrol(void) {
   int deadband = 5;
   while (1) {
 
-    int leftY = Controller1.Axis3.position();
-    int rightX = Controller1.Axis4.position();
-        
+    //int leftY = Controller1.Axis3.position();
+    //int rightX = Controller1.Axis4.position();
+    int leftMotorSpeed = Controller1.Axis3.position();
+    int rightMotorSpeed = Controller1.Axis2.position();
+
+    //Arcade Drive
         // Move the left side of the robot
-        LeftMotor.spin(forward, leftY + rightX, pct);
+        /*LeftMotor.spin(forward, leftY + rightX, pct);
         
         // Move the right side of the robot 
-        RightMotor.spin(forward, leftY - rightX, pct);
+        RightMotor.spin(forward, leftY - rightX, pct);*/
 
+
+    //Tank Drive
+    if (abs(leftMotorSpeed) < deadband) {
+      LeftMotor.setVelocity(0, percent);
+    } else {
+      LeftMotor.setVelocity(leftMotorSpeed, percent);
+    }
+
+    if (abs(rightMotorSpeed) < deadband) {
+      RightMotor.setVelocity(0, percent);
+    } else {
+      RightMotor.setVelocity(rightMotorSpeed, percent);
+    }
     
+    LeftMotor.spin(forward);
+    RightMotor.spin(forward);
+
     //Intake Forward and Reverse
     if(Controller1.ButtonR1.pressing()) {
       Arms.spin(forward, 200, rpm);
@@ -245,11 +264,11 @@ void usercontrol(void) {
       }
     }
     
-    //Spinner Code
-    if (Controller1.ButtonB.pressing())
-    {
+    if (Controller1.ButtonB.pressing()) {
       Spinner.spin(forward, 200, rpm);
-    } else {
+    }
+    
+    if (Controller1.ButtonA.pressing()) {
       Spinner.stop();
     }
     
