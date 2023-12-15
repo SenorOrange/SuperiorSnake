@@ -6,6 +6,8 @@ extern brain Brain;
 extern motor_group LeftMotor;
 extern motor_group RightMotor;
 extern controller Controller1;
+extern motor ArmsMotorA;
+extern motor ArmsMotorB;
 extern motor_group Arms;
 extern motor Launcher;
 extern motor LeftMotorMotorA;

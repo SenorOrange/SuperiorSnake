@@ -58,6 +58,8 @@ void drawGUI() {
   Brain.Screen.setFillColor(black);
 }
 
+
+//Select Which Auton We Want
 void selectAuton() {
   bool selectingAuton = true;
   
@@ -88,6 +90,12 @@ void selectAuton() {
   }
   wait(10, msec); // slow it down
   Brain.Screen.setFillColor(black);
+}
+
+
+//Select Which Driver Controls We Want
+void selectDrive() {
+
 }
 
 /*---------------------------------------------------------------------------*/
@@ -124,6 +132,9 @@ void pre_auton(void) {
 void autonomous(void) {
   switch (AutonSelected) {
   case 0:
+
+
+
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   Arms.resetPosition();
@@ -160,55 +171,31 @@ void autonomous(void) {
   Arms.spinTo(2009, degrees);
   break;
     case 1:
-  RightMotor.spin(forward, 1000, pct);
-  break;
-    case 2:
-  LeftMotor.spin(reverse, 1000, pct);
-  break;
-    case 3:
-  //code 3
+
+
+
+    //Defence Auton
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(850, deg, 100, rpm, false);
+  LeftMotor.spinTo(850, deg, 100, rpm);
+
+  wait(0.5, sec);
+  ArmsMotorA.resetPosition();
+  ArmsMotorB.resetPosition();
+  ArmsMotorA.spinTo(2000, degrees, 200, rpm, false);
+  ArmsMotorB.spinTo(2000, degrees, 200, rpm);
+  //Arms.spinTo(2000, degrees, 200, rpm);
+
+  wait(1, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-850, deg, 100, rpm, false);
+  LeftMotor.spinTo(-850, deg, 100, rpm);
   break;
   }
 }
 
-
-/*void autonomous(void) {
- int (main);
-  RightMotor.resetPosition();
-  LeftMotor.resetPosition();
-  Arms.resetPosition();
- //straight
-  RightMotor.spinTo(390, deg, 100, rpm, false);
-  LeftMotor.spinTo(390, deg, 100, rpm);
-  wait(1, sec);
-  RightMotor.resetPosition();
-  LeftMotor.resetPosition();
-  //turn right
-  RightMotor.spinTo(-220, deg, 100, rpm, false);
-  LeftMotor.spinTo(220, deg, 100, rpm);
-  wait(1, sec);
-  RightMotor.resetPosition();
-  LeftMotor.resetPosition();
-  //straight
-  RightMotor.spinTo(250, deg, 100, rpm, false);
-  LeftMotor.spinTo(250, deg, 100, rpm);
-  wait(1, sec);
-  RightMotor.resetPosition();
-  LeftMotor.resetPosition();
-  //turn right
-  RightMotor.spinTo(220, deg, 100, rpm, false);
-  LeftMotor.spinTo(-220, deg, 100, rpm);
-  wait(1, sec);
-  RightMotor.resetPosition();
-  LeftMotor.resetPosition();
-  //straight
-  RightMotor.spinTo(200, deg, 100, rpm, false);
-  LeftMotor.spinTo(2000, deg, 100, rpm);
-  wait(1, sec);
-  
-  wait(1, sec);
-  Arms.spinTo(2009, degrees);
-}*/
 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
@@ -266,7 +253,7 @@ void usercontrol(void) {
     }
     
     if (Controller1.ButtonB.pressing()) {
-      Spinner.spin(forward, 200, rpm);
+      Spinner.spin(forward, 600, rpm);
     }
     
     if (Controller1.ButtonA.pressing()) {
