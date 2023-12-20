@@ -34,8 +34,14 @@
 using namespace vex;
 
 int AutonSelected = 0;
-int AutonMin = 0;
-int AutonMax = 4;
+
+bool DefenceAuton = false;
+bool OffenseAuton = false;
+
+bool DriveSelect = false;
+bool TankDrive = false;
+bool ArcadeDrive = false;
+
 
 // A global instance of competition
 competition Competition;
@@ -46,15 +52,15 @@ competition Competition;
 
 void drawGUI() {
   Brain.Screen.clearScreen();
-  Brain.Screen.printAt(1, 40, "Select Auton then Press Go");
-  Brain.Screen.printAt(1, 200, "Auton Selected =  %d   ");
-  Brain.Screen.setFillColor(red);
-  Brain.Screen.drawRectangle(20, 50, 100, 100);
-  Brain.Screen.drawCircle(300, 75, 25);
-  Brain.Screen.printAt(25, 75, "Select");
-  Brain.Screen.setFillColor(green);
-  Brain.Screen.drawRectangle(170, 50, 100, 100);
-  Brain.Screen.printAt(175, 75, "GO");
+  Brain.Screen.printAt(180, 30, "Select Auton");
+
+  Brain.Screen.setFillColor(black);
+  Brain.Screen.drawRectangle(20, 40, 210, 140);
+  Brain.Screen.printAt(25, 75, "Defence");
+  Brain.Screen.drawRectangle(250, 40, 210, 140);
+  Brain.Screen.printAt(265, 75, "Offense");
+  Brain.Screen.drawRectangle(143, 190, 190, 40);
+  Brain.Screen.printAt(180, 215, "Drive Select");
   Brain.Screen.setFillColor(black);
 }
 
@@ -67,27 +73,48 @@ void selectAuton() {
   int x = Brain.Screen.xPosition(); // get the x position of last touch of the screen
   int y = Brain.Screen.yPosition(); // get the y position of last touch of the screen
   // check to see if buttons were pressed
-  if (x >= 20 && x <= 120 && y >= 50 && y <= 150) // select button pressed
+
+  //Select Defence
+  if (x >= 20 && y >= 40 && x <= 210 && y <= 140 && DriveSelect == false) 
   {
-    AutonSelected++;
-    if (AutonSelected > AutonMax)AutonSelected = AutonMin; // rollover
-      
-    Brain.Screen.printAt(1, 200, "Auton Selected =  %d   ", AutonSelected);
-
-
-  }
-  if (x >= 170 && x <= 270 && y >= 50 && y <= 150) {
-    selectingAuton = false; // GO button pressed
-    Brain.Screen.printAt(1, 200, "Auton  =  %d   GO           ", AutonSelected);
-    //Autonomous();
-  }
-  if (!selectingAuton) {
     Brain.Screen.setFillColor(green);
-    Brain.Screen.drawCircle(300, 75, 25);
-  } else {
-    Brain.Screen.setFillColor(red);
-    Brain.Screen.drawCircle(300, 75, 25);
+    Brain.Screen.drawRectangle(20, 40, 210, 140);
+    Brain.Screen.printAt(25, 75, "Defence");
+
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.drawRectangle(250, 40, 210, 140);
+    Brain.Screen.printAt(265, 75, "Offense");
+
+    DefenceAuton = true;
+    OffenseAuton = false;
   }
+
+  //Select Offense
+  if (x >= 250 && y >= 40 && x <= 360 && y <= 180 && DriveSelect == false) 
+  {
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.drawRectangle(20, 40, 210, 140);
+    Brain.Screen.printAt(25, 75, "Defence");
+
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(250, 40, 210, 140);
+    Brain.Screen.printAt(265, 75, "Offense");
+
+    DefenceAuton = false;
+    OffenseAuton = true;
+  }
+
+  //Drive Select
+  if (x >= 143 && y >= 190 && x <= 333 && y <= 230 && DefenceAuton == true || OffenseAuton == true) 
+  {
+    /*Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(143, 190, 190, 40);
+    Brain.Screen.printAt(25, 75, "Defence");*/
+
+    DriveSelect = true;
+  }
+
+ 
   wait(10, msec); // slow it down
   Brain.Screen.setFillColor(black);
 }
@@ -96,6 +123,49 @@ void selectAuton() {
 //Select Which Driver Controls We Want
 void selectDrive() {
 
+  
+
+  int x = Brain.Screen.xPosition(); // get the x position of last touch of the screen
+  int y = Brain.Screen.yPosition(); // get the y position of last touch of the screen
+
+  if (x >= 20 && y >= 40 && x <= 210 && y <= 140) 
+  {
+    Brain.Screen.setFillColor(blue);
+    Brain.Screen.drawRectangle(20, 40, 210, 140);
+    Brain.Screen.printAt(25, 75, "Tank");
+
+    Brain.Screen.setFillColor(purple);
+    Brain.Screen.drawRectangle(250, 40, 210, 140);
+    Brain.Screen.printAt(265, 75, "arcade");
+
+    DefenceAuton = true;
+    OffenseAuton = false;
+  }
+
+  //Select Offense
+  if (x >= 250 && y >= 40 && x <= 360 && y <= 180) 
+  {
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.drawRectangle(20, 40, 210, 140);
+    Brain.Screen.printAt(25, 75, "Defence");
+
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(250, 40, 210, 140);
+    Brain.Screen.printAt(265, 75, "Offense");
+
+    DefenceAuton = false;
+    OffenseAuton = true;
+  }
+
+  //Drive Select
+  if (x >= 143 && y >= 190 && x <= 333 && y <= 230 && DefenceAuton == true || OffenseAuton == true) 
+  {
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(143, 190, 190, 40);
+    Brain.Screen.printAt(25, 75, "Defence");
+
+    DriveSelect = false;
+  }
 }
 
 /*---------------------------------------------------------------------------*/
@@ -109,12 +179,15 @@ void selectDrive() {
 /*---------------------------------------------------------------------------*/
 
 void pre_auton(void) {
+  
+
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   Brain.Screen.setFont(monoM); 
   Brain.Screen.printAt(1, 40, "pre auton is running");
   drawGUI();
   Brain.Screen.pressed(selectAuton);
+  
 }
 
 
