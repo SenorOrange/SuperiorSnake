@@ -39,9 +39,10 @@ bool DefenceAuton = false;
 bool OffenseAuton = false;
 
 bool DriveSelect = false;
-bool TankDrive = false;
-bool ArcadeDrive = false;
 
+bool TankDrive = true;
+bool ArcadeDrive = false;
+bool FunkyTownDrive = false;
 
 // A global instance of competition
 competition Competition;
@@ -74,8 +75,10 @@ void selectAuton() {
   int y = Brain.Screen.yPosition(); // get the y position of last touch of the screen
   // check to see if buttons were pressed
 
+  
+
   //Select Defence
-  if (x >= 20 && y >= 40 && x <= 210 && y <= 140 && DriveSelect == false) 
+  if (x >= 20 && y >= 40 && x <= 230 && y <= 180 && DriveSelect == false) 
   {
     Brain.Screen.setFillColor(green);
     Brain.Screen.drawRectangle(20, 40, 210, 140);
@@ -104,14 +107,94 @@ void selectAuton() {
     OffenseAuton = true;
   }
 
-  //Drive Select
-  if (x >= 143 && y >= 190 && x <= 333 && y <= 230 && DefenceAuton == true || OffenseAuton == true) 
+  //Select Tank
+  if (x >= 20 && y >= 40 && x <= 160 && y <= 180 && DriveSelect == true) 
   {
-    /*Brain.Screen.setFillColor(green);
-    Brain.Screen.drawRectangle(143, 190, 190, 40);
-    Brain.Screen.printAt(25, 75, "Defence");*/
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.drawRectangle(170, 40, 140, 140);
+    Brain.Screen.printAt(175, 75, "Funky Town");
+    Brain.Screen.drawRectangle(320, 40, 140, 140);
+    Brain.Screen.printAt(325, 75, "Arcade");
 
-    DriveSelect = true;
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(20, 40, 140, 140);
+    Brain.Screen.printAt(25, 75, "Tank");
+
+    TankDrive = true;
+    FunkyTownDrive = false;
+    ArcadeDrive = false;
+  }
+  
+  //Select Funky Town
+  if (x >= 170 && y >= 40 && x <= 310 && y <= 180 && DriveSelect == true) 
+  {
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.drawRectangle(20, 40, 140, 140);
+    Brain.Screen.printAt(25, 75, "Tank");
+    Brain.Screen.drawRectangle(320, 40, 140, 140);
+    Brain.Screen.printAt(325, 75, "Arcade");
+
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(170, 40, 140, 140);
+    Brain.Screen.printAt(175, 75, "Funky Town");
+
+    TankDrive = false;
+    FunkyTownDrive = true;
+    ArcadeDrive = false;
+  }
+
+  //Select Arcade
+  if (x >= 320 && y >= 40 && x <= 460 && y <= 180 && DriveSelect == true) 
+  {
+    Brain.Screen.setFillColor(black);
+    Brain.Screen.drawRectangle(20, 40, 140, 140);
+    Brain.Screen.printAt(25, 75, "Tank");
+    Brain.Screen.drawRectangle(170, 40, 140, 140);
+    Brain.Screen.printAt(175, 75, "Funky Town");
+
+    Brain.Screen.setFillColor(green);
+    Brain.Screen.drawRectangle(320, 40, 140, 140);
+    Brain.Screen.printAt(325, 75, "Arcade");
+
+    TankDrive = false;
+    FunkyTownDrive = false;
+    ArcadeDrive = true;
+  }
+
+  //Change Select
+  if (x >= 143 && y >= 190 && x <= 333 && y <= 230) 
+  {
+    //Change Select
+    if(DriveSelect == true)
+    {
+      //Auton Select
+      DriveSelect = false;
+      Brain.Screen.clearScreen();
+      Brain.Screen.setFillColor(black);
+      Brain.Screen.printAt(180, 30, "Select Auton");
+      Brain.Screen.drawRectangle(20, 40, 210, 140);
+      Brain.Screen.printAt(25, 75, "Defence");
+      Brain.Screen.drawRectangle(250, 40, 210, 140);
+      Brain.Screen.printAt(265, 75, "Offense");
+      Brain.Screen.drawRectangle(143, 190, 190, 40);
+      Brain.Screen.printAt(180, 215, "Drive Select");
+
+    } else {
+      //Drive Select
+      DriveSelect = true;
+      Brain.Screen.clearScreen();
+      Brain.Screen.setFillColor(black);
+      Brain.Screen.printAt(180, 30, "Select Drive");
+      Brain.Screen.drawRectangle(20, 40, 140, 140);
+      Brain.Screen.printAt(25, 75, "Tank");
+      Brain.Screen.drawRectangle(170, 40, 140, 140);
+      Brain.Screen.printAt(175, 75, "Funky Town");
+      Brain.Screen.drawRectangle(320, 40, 140, 140);
+      Brain.Screen.printAt(325, 75, "Arcade");
+      Brain.Screen.drawRectangle(143, 190, 190, 40);
+      Brain.Screen.printAt(180, 215, "Auton Select");
+      
+    }
   }
 
  
@@ -121,52 +204,7 @@ void selectAuton() {
 
 
 //Select Which Driver Controls We Want
-void selectDrive() {
 
-  
-
-  int x = Brain.Screen.xPosition(); // get the x position of last touch of the screen
-  int y = Brain.Screen.yPosition(); // get the y position of last touch of the screen
-
-  if (x >= 20 && y >= 40 && x <= 210 && y <= 140) 
-  {
-    Brain.Screen.setFillColor(blue);
-    Brain.Screen.drawRectangle(20, 40, 210, 140);
-    Brain.Screen.printAt(25, 75, "Tank");
-
-    Brain.Screen.setFillColor(purple);
-    Brain.Screen.drawRectangle(250, 40, 210, 140);
-    Brain.Screen.printAt(265, 75, "arcade");
-
-    DefenceAuton = true;
-    OffenseAuton = false;
-  }
-
-  //Select Offense
-  if (x >= 250 && y >= 40 && x <= 360 && y <= 180) 
-  {
-    Brain.Screen.setFillColor(black);
-    Brain.Screen.drawRectangle(20, 40, 210, 140);
-    Brain.Screen.printAt(25, 75, "Defence");
-
-    Brain.Screen.setFillColor(green);
-    Brain.Screen.drawRectangle(250, 40, 210, 140);
-    Brain.Screen.printAt(265, 75, "Offense");
-
-    DefenceAuton = false;
-    OffenseAuton = true;
-  }
-
-  //Drive Select
-  if (x >= 143 && y >= 190 && x <= 333 && y <= 230 && DefenceAuton == true || OffenseAuton == true) 
-  {
-    Brain.Screen.setFillColor(green);
-    Brain.Screen.drawRectangle(143, 190, 190, 40);
-    Brain.Screen.printAt(25, 75, "Defence");
-
-    DriveSelect = false;
-  }
-}
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -203,11 +241,9 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 void autonomous(void) {
-  switch (AutonSelected) {
-  case 0:
-
-
-
+  
+  if(OffenseAuton == true)
+  {
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   Arms.resetPosition();
@@ -242,12 +278,12 @@ void autonomous(void) {
   
   wait(1, sec);
   Arms.spinTo(2009, degrees);
-  break;
-    case 1:
+  }
 
 
 
-    //Defence Auton
+  if(DefenceAuton == true)
+  {
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   RightMotor.spinTo(850, deg, 100, rpm, false);
@@ -265,7 +301,6 @@ void autonomous(void) {
   LeftMotor.resetPosition();
   RightMotor.spinTo(-850, deg, 100, rpm, false);
   LeftMotor.spinTo(-850, deg, 100, rpm);
-  break;
   }
 }
 
@@ -285,34 +320,59 @@ void usercontrol(void) {
   int deadband = 5;
   while (1) {
 
-    //int leftY = Controller1.Axis3.position();
-    //int rightX = Controller1.Axis4.position();
+    int Axis3 = Controller1.Axis3.position();
+    int Axis4 = Controller1.Axis4.position();
+    int Axis2 = Controller1.Axis2.position();
+    int Axis1 = Controller1.Axis1.position();
     int leftMotorSpeed = Controller1.Axis3.position();
     int rightMotorSpeed = Controller1.Axis2.position();
 
-    //Arcade Drive
-        // Move the left side of the robot
-        /*LeftMotor.spin(forward, leftY + rightX, pct);
-        
-        // Move the right side of the robot 
-        RightMotor.spin(forward, leftY - rightX, pct);*/
-
-
-    //Tank Drive
-    if (abs(leftMotorSpeed) < deadband) {
-      LeftMotor.setVelocity(0, percent);
-    } else {
-      LeftMotor.setVelocity(leftMotorSpeed, percent);
+    if(ArcadeDrive == true)
+    {
+     LeftMotor.spin(forward, Axis3 + Axis4, percent);
+     RightMotor.spin(forward, Axis3 - Axis4, percent);
     }
 
-    if (abs(rightMotorSpeed) < deadband) {
-      RightMotor.setVelocity(0, percent);
-    } else {
-      RightMotor.setVelocity(rightMotorSpeed, percent);
-    }
+    if(TankDrive == true)
+    {
+      if (abs(leftMotorSpeed) < deadband) {
+        LeftMotor.setVelocity(0, percent);
+      } else {
+        LeftMotor.setVelocity(leftMotorSpeed, percent);
+      }
+
+      if (abs(rightMotorSpeed) < deadband) {
+        RightMotor.setVelocity(0, percent);
+      } else {
+        RightMotor.setVelocity(rightMotorSpeed, percent);
+      }
     
-    LeftMotor.spin(forward);
-    RightMotor.spin(forward);
+      LeftMotor.spin(forward);
+      RightMotor.spin(forward);
+    }
+
+    if(FunkyTownDrive == true)
+    {
+      
+      if (abs(Axis3) < deadband) {
+        LeftMotor.setVelocity(0, percent);
+        RightMotor.setVelocity(0, percent);
+
+        if (abs(Axis1) < deadband) {
+        LeftMotor.setVelocity(0, percent);
+        RightMotor.setVelocity(0, percent);
+      } else {
+        LeftMotor.setVelocity(Axis1, percent);
+        RightMotor.setVelocity(0 - Axis1, percent);
+      }
+      } else {
+        LeftMotor.setVelocity(Axis3, percent);
+        RightMotor.setVelocity(Axis3, percent);
+      }
+
+      LeftMotor.spin(forward);
+      RightMotor.spin(forward);
+    }
 
     //Intake Forward and Reverse
     if(Controller1.ButtonR1.pressing()) {
