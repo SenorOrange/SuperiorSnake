@@ -250,34 +250,58 @@ void autonomous(void) {
  //straight
   RightMotor.spinTo(390, deg, 100, rpm, false);
   LeftMotor.spinTo(390, deg, 100, rpm);
-  wait(1, sec);
+  wait(0.2, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //turn right
   RightMotor.spinTo(-220, deg, 100, rpm, false);
   LeftMotor.spinTo(220, deg, 100, rpm);
-  wait(1, sec);
+  wait(0.2, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //straight
-  RightMotor.spinTo(250, deg, 100, rpm, false);
-  LeftMotor.spinTo(250, deg, 100, rpm);
-  wait(1, sec);
+  RightMotor.spinTo(600, deg, 100, rpm, false);
+  LeftMotor.spinTo(600, deg, 100, rpm);
+  wait(0.2, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //turn right
   RightMotor.spinTo(220, deg, 100, rpm, false);
   LeftMotor.spinTo(-220, deg, 100, rpm);
-  wait(1, sec);
+  wait(0.2, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //straight
-  RightMotor.spinTo(200, deg, 100, rpm, false);
-  LeftMotor.spinTo(2000, deg, 100, rpm);
-  wait(1, sec);
-  
-  wait(1, sec);
-  Arms.spinTo(2009, degrees);
+  RightMotor.spinTo(210, deg, 100, rpm, false);
+  LeftMotor.spinTo(210, deg, 100, rpm);
+  wait(0.2, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //Arms
+  Arms.spinTo(-2009, deg, 350, rpm);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //Backup
+  RightMotor.spinTo(-100, deg, 100, rpm, false);
+  LeftMotor.spinTo(-100, deg, 100, rpm);
+  wait(0.2, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //Slight Turn
+  RightMotor.spinTo(600, deg, 100, rpm, false);
+  LeftMotor.spinTo(-600, deg, 100, rpm);
+  wait(2, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //straight
+  RightMotor.spinTo(-130, deg, 100, rpm, false);
+  LeftMotor.spinTo(-130, deg, 100, rpm);
+  wait(0.2, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  //Backup
+  //RightMotor.spinTo(150, deg, 100, rpm, false);
+  //LeftMotor.spinTo(150, deg, 100, rpm);
   }
 
 
