@@ -351,6 +351,7 @@ void usercontrol(void) {
     int Axis1 = Controller1.Axis1.position();
     int leftMotorSpeed = Controller1.Axis3.position();
     int rightMotorSpeed = Controller1.Axis2.position();
+    bool ControllerDisplay;
 
     if(ArcadeDrive == true)
     {
@@ -398,18 +399,11 @@ void usercontrol(void) {
       LeftMotor.spin(forward);
       RightMotor.spin(forward);
     }
-
-    //Intake Forward and Reverse
-    /*if(Controller1.ButtonR1.pressing()) {
-      Arms.spin(forward, 200, rpm);
-    } else {
-      if(Controller1.ButtonL1.pressing()) {
-        Arms.spin(reverse, 200, rpm);
-      } else {
-        Arms.stop();
-      }
-    }*/
     
+    Brain.Screen.clearScreen();
+    Brain.Screen.setPenColor(blue);
+    Brain.Screen.print(SpinnerA.velocity(rpm));
+
     //Arms Code
     if (Controller1.ButtonL1.pressing()) {
       Arms.spin(reverse, 200, rpm);
@@ -428,33 +422,13 @@ void usercontrol(void) {
       Spinner.spin(forward, 600, rpm);
     }
 
-    //if (Controller1.ButtonLeft.pressing()) {
-    //  Spinner.spin(forward, -600, rpm);
-    //}
-    
     if (Controller1.ButtonA.pressing()) {
       Spinner.stop();
     }
     
-
+    //Controller Display
     
 
-
-    //Launcher Code
-
-    //Pick Up Ball
-    
-/*/
-    //Launch Ball and Reset Launcher
-    if(Controller1.ButtonB.pressing()) {
-      Arms.spinTo(10000, deg, 200, rpm, false);
-      wait(0.5, sec);
-      Launcher.resetPosition();
-      Launcher.spinTo(800, deg, 50, rpm, true);
-      wait(1, sec);
-      Launcher.spinTo(-200, deg, 50, rpm, false);
-      Arms.stop(); 
-    } */
 
     wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
 
