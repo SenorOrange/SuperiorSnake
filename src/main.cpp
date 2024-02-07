@@ -40,8 +40,8 @@ bool OffenseAuton = false;
 
 bool DriveSelect = false;
 
-bool TankDrive = true;
-bool ArcadeDrive = false;
+bool TankDrive = false;
+bool ArcadeDrive = true;
 bool FunkyTownDrive = false;
 
 // A global instance of competition
@@ -294,20 +294,21 @@ void autonomous(void) {
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //straight
-  RightMotor.spinTo(-130, deg, 100, rpm, false);
-  LeftMotor.spinTo(-130, deg, 100, rpm);
+  RightMotor.spinTo(-180, deg, 100, rpm, false);
+  LeftMotor.spinTo(-180, deg, 100, rpm);
   wait(0.2, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //Backup
-  //RightMotor.spinTo(150, deg, 100, rpm, false);
-  //LeftMotor.spinTo(150, deg, 100, rpm);
+  RightMotor.spinTo(180, deg, 100, rpm, false);
+  LeftMotor.spinTo(180, deg, 100, rpm);
   }
 
 
 
   if(DefenceAuton == true)
   {
+  //Spinner.spin(forward, 600, rpm);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   RightMotor.spinTo(850, deg, 100, rpm, false);
@@ -316,8 +317,8 @@ void autonomous(void) {
   wait(0.5, sec);
   ArmsMotorA.resetPosition();
   ArmsMotorB.resetPosition();
-  ArmsMotorA.spinTo(2000, degrees, 200, rpm, false);
-  ArmsMotorB.spinTo(2000, degrees, 200, rpm);
+  ArmsMotorA.spinTo(-2000, degrees, 200, rpm, false);
+  ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
   //Arms.spinTo(2000, degrees, 200, rpm);
 
   wait(1, sec);
@@ -399,7 +400,7 @@ void usercontrol(void) {
     }
 
     //Intake Forward and Reverse
-    if(Controller1.ButtonR1.pressing()) {
+    /*if(Controller1.ButtonR1.pressing()) {
       Arms.spin(forward, 200, rpm);
     } else {
       if(Controller1.ButtonL1.pressing()) {
@@ -407,11 +408,29 @@ void usercontrol(void) {
       } else {
         Arms.stop();
       }
-    }
+    }*/
     
+    //Arms Code
+    if (Controller1.ButtonL1.pressing()) {
+      Arms.spin(reverse, 200, rpm);
+    }
+
+    if (Controller1.ButtonR1.pressing()) {
+      Arms.spin(forward, 200, rpm);
+    }
+
+    if (Controller1.ButtonL2.pressing()) {
+      Arms.stop();
+    }
+
+    //Spinner Code
     if (Controller1.ButtonB.pressing()) {
       Spinner.spin(forward, 600, rpm);
     }
+
+    //if (Controller1.ButtonLeft.pressing()) {
+    //  Spinner.spin(forward, -600, rpm);
+    //}
     
     if (Controller1.ButtonA.pressing()) {
       Spinner.stop();

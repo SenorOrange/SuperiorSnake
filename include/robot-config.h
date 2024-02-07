@@ -14,7 +14,10 @@ extern motor LeftMotorMotorA;
 extern motor LeftMotorMotorB;
 extern motor RightMotorMotorA;
 extern motor RightMotorMotorB;
-extern motor Spinner;
+extern motor SpinnerA;
+extern motor SpinnerB;
+extern motor_group Spinner;
+
 
 
 /**

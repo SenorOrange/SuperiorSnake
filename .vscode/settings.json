@@ -2,5 +2,12 @@
 	"C_Cpp.default.systemIncludePath": [
 		"${config:vexrobotics.vexcode.Cpp.Sdk.Home}/V5/V5_20220726_10_00_00/vexv5/gcc/include/sys"
 	],
-	"C_Cpp.errorSquiggles": "disabled"
+	"C_Cpp.errorSquiggles": "disabled",
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/josh/Documents/GitHub/SuperiorSnake/build",
+			"binaryPath": "/home/josh/Documents/GitHub/SuperiorSnake/build/SuperiorSnake.elf",
+			"binaryArgs": []
+		}
+	]
 }
