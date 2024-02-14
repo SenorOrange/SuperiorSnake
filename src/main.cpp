@@ -226,6 +226,7 @@ void pre_auton(void) {
   drawGUI();
   Brain.Screen.pressed(selectAuton);
   
+
 }
 
 
@@ -351,7 +352,8 @@ void usercontrol(void) {
     int Axis1 = Controller1.Axis1.position();
     int leftMotorSpeed = Controller1.Axis3.position();
     int rightMotorSpeed = Controller1.Axis2.position();
-    bool ControllerDisplay;
+    bool SpinnerOff = true;
+    
 
     if(ArcadeDrive == true)
     {
@@ -399,10 +401,7 @@ void usercontrol(void) {
       LeftMotor.spin(forward);
       RightMotor.spin(forward);
     }
-    
-    Brain.Screen.clearScreen();
-    Brain.Screen.setPenColor(blue);
-    Brain.Screen.print(SpinnerA.velocity(rpm));
+  
 
     //Arms Code
     if (Controller1.ButtonL1.pressing()) {
@@ -426,9 +425,21 @@ void usercontrol(void) {
       Spinner.stop();
     }
     
-    //Controller Display
-    
+    //Controller Screen
+    Controller1.Screen.clearScreen();
+    Controller1.Screen.setCursor(1, 1);
+    Controller1.Screen.print(Spinner.temperature(fahrenheit));
+    Controller1.Screen.print("|");
+    Controller1.Screen.setCursor(1, 18);
+    Controller1.Screen.print("|");
+    Controller1.Screen.print(Spinner.temperature(fahrenheit));
+    Controller1.Screen.setCursor(2, 1);
+    Controller1.Screen.print("____|           |_____");
+    Controller1.Screen.setCursor(3, 10);
+    Controller1.Screen.print(Spinner.velocity(rpm));
 
+    
+    
 
     wait(20, msec); // Sleep the task for a short amount of time to prevent wasted resources.
 
