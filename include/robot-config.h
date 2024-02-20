@@ -17,6 +17,7 @@ extern motor RightMotorMotorB;
 extern motor SpinnerA;
 extern motor SpinnerB;
 extern motor_group Spinner;
+extern motor Wings;
 
 
 

@@ -21,6 +21,7 @@ motor_group Arms = motor_group(ArmsMotorA, ArmsMotorB);
 motor SpinnerA = motor(PORT11, ratio6_1, false);
 motor SpinnerB = motor(PORT12, ratio6_1, true);
 motor_group Spinner = motor_group(SpinnerA, SpinnerB);
+motor Wings = motor(PORT4, ratio36_1, false);
 
 //ports 8, 9 are dead ports
 

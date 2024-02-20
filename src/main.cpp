@@ -424,6 +424,17 @@ void usercontrol(void) {
     if (Controller1.ButtonA.pressing()) {
       Spinner.stop();
     }
+
+    //Wings Code
+    if (Controller1.ButtonL2.pressing()) {
+      Wings.resetPosition();
+      Wings.spinFor(forward, 270, deg);
+    }
+
+    if (Controller1.ButtonR2.pressing()) {
+      Wings.resetPosition();
+      Wings.spinFor(reverse, 270, deg);
+    }
     
     //Controller Screen
     Controller1.Screen.clearScreen();
