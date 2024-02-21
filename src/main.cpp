@@ -412,7 +412,7 @@ void usercontrol(void) {
       Arms.spin(forward, 200, rpm);
     }
 
-    if (Controller1.ButtonL2.pressing()) {
+    if (Controller1.ButtonX.pressing()) {
       Arms.stop();
     }
 
@@ -428,26 +428,22 @@ void usercontrol(void) {
     //Wings Code
     if (Controller1.ButtonL2.pressing()) {
       Wings.resetPosition();
-      Wings.spinFor(forward, 270, deg);
+      Wings.spinFor(forward, 270, deg, 200, rpm);
     }
 
     if (Controller1.ButtonR2.pressing()) {
       Wings.resetPosition();
-      Wings.spinFor(reverse, 270, deg);
+      Wings.spinFor(reverse, 270, deg, 200, rpm);
     }
     
     //Controller Screen
-    Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
-    Controller1.Screen.print(Spinner.temperature(fahrenheit));
-    Controller1.Screen.print("|");
-    Controller1.Screen.setCursor(1, 18);
-    Controller1.Screen.print("|");
-    Controller1.Screen.print(Spinner.temperature(fahrenheit));
+    Controller1.Screen.print(SpinnerA.temperature(fahrenheit));
     Controller1.Screen.setCursor(2, 1);
-    Controller1.Screen.print("____|           |_____");
-    Controller1.Screen.setCursor(3, 10);
+    Controller1.Screen.print(SpinnerB.temperature(fahrenheit));
+    Controller1.Screen.setCursor(3, 1);
     Controller1.Screen.print(Spinner.velocity(rpm));
+    
 
     
     
