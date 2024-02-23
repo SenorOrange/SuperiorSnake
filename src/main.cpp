@@ -36,13 +36,14 @@ using namespace vex;
 int AutonSelected = 0;
 
 bool DefenceAuton = false;
-bool OffenseAuton = false;
+bool OffenseAuton = true;
 
 bool DriveSelect = false;
 
 bool TankDrive = false;
 bool ArcadeDrive = true;
 bool FunkyTownDrive = false;
+static bool WingsOut = false;
 
 // A global instance of competition
 competition Competition;
@@ -50,6 +51,25 @@ competition Competition;
 // define your global instances of motors and other devices here
 
 //Auton Select Stuff
+
+//Wings Code
+void WingToggle() {
+
+if (WingsOut == false) {
+        WingsOut = true;
+        Brain.Screen.drawCircle(1, 1, 100, green);
+        Wings.resetPosition();
+        Wings.spinFor(forward, 270, deg, 200, rpm);
+      } else {
+        WingsOut = false;
+        Brain.Screen.drawCircle(1, 1, 100, red);
+        Wings.resetPosition();
+        Wings.spinFor(reverse, 270, deg, 200, rpm);
+      }
+
+wait(100, msec);
+}
+
 
 void drawGUI() {
   Brain.Screen.clearScreen();
@@ -322,12 +342,29 @@ void autonomous(void) {
   ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
   //Arms.spinTo(2000, degrees, 200, rpm);
 
-  wait(1, sec);
+  wait(0.5, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   RightMotor.spinTo(-850, deg, 100, rpm, false);
   LeftMotor.spinTo(-850, deg, 100, rpm);
-  }
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-90, deg, 100, rpm, false);
+  LeftMotor.spinTo(90, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-240, deg, 100, rpm, false);
+  LeftMotor.spinTo(-240, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(170, deg, 100, rpm, false);
+  LeftMotor.spinTo(-240, deg, 100, rpm);  }
 }
 
 
@@ -353,7 +390,14 @@ void usercontrol(void) {
     int leftMotorSpeed = Controller1.Axis3.position();
     int rightMotorSpeed = Controller1.Axis2.position();
     bool SpinnerOff = true;
+    static bool WingsOut = false;
     
+    if(DefenceAuton == true) {
+      DefenceAuton = false;
+      Spinner.spin(forward, 600, rpm);
+      Brain.Screen.drawCircle(1, 1, 100, orange);
+
+    }
 
     if(ArcadeDrive == true)
     {
@@ -412,7 +456,7 @@ void usercontrol(void) {
       Arms.spin(forward, 200, rpm);
     }
 
-    if (Controller1.ButtonX.pressing()) {
+    if (Controller1.ButtonL2.pressing()) {
       Arms.stop();
     }
 
@@ -426,14 +470,8 @@ void usercontrol(void) {
     }
 
     //Wings Code
-    if (Controller1.ButtonL2.pressing()) {
-      Wings.resetPosition();
-      Wings.spinFor(forward, 270, deg, 200, rpm);
-    }
-
-    if (Controller1.ButtonR2.pressing()) {
-      Wings.resetPosition();
-      Wings.spinFor(reverse, 270, deg, 200, rpm);
+    if (Controller1.ButtonX.pressing()) {
+      WingToggle();
     }
     
     //Controller Screen
@@ -454,6 +492,7 @@ void usercontrol(void) {
   }
 
 }
+
 
 
 //
