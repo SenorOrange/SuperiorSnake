@@ -18,8 +18,8 @@ controller Controller1 = controller(primary);
 motor ArmsMotorA = motor(PORT2, ratio18_1, false);
 motor ArmsMotorB = motor(PORT1, ratio18_1, true);
 motor_group Arms = motor_group(ArmsMotorA, ArmsMotorB);
-motor SpinnerA = motor(PORT11, ratio6_1, false);
-motor SpinnerB = motor(PORT12, ratio6_1, true);
+motor SpinnerA = motor(PORT7, ratio6_1, false);
+motor SpinnerB = motor(PORT20, ratio6_1, true);
 motor_group Spinner = motor_group(SpinnerA, SpinnerB);
 motor Wings = motor(PORT6, ratio36_1, false);
 

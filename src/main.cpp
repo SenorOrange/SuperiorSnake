@@ -269,7 +269,7 @@ void autonomous(void) {
   LeftMotor.resetPosition();
   Arms.resetPosition();
  //straight
-  RightMotor.spinTo(390, deg, 100, rpm, false);
+  /*RightMotor.spinTo(390, deg, 100, rpm, false);
   LeftMotor.spinTo(390, deg, 100, rpm);
   wait(0.2, sec);
   RightMotor.resetPosition();
@@ -322,7 +322,90 @@ void autonomous(void) {
   LeftMotor.resetPosition();
   //Backup
   RightMotor.spinTo(180, deg, 100, rpm, false);
-  LeftMotor.spinTo(180, deg, 100, rpm);
+  LeftMotor.spinTo(180, deg, 100, rpm);*/
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(800, deg, 100, rpm, false);
+  LeftMotor.spinTo(800, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(70, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(20, deg, 100, rpm, false);
+  LeftMotor.spinTo(20, deg, 100, rpm);
+
+
+  wait(0.5, sec);
+  ArmsMotorA.resetPosition();
+  ArmsMotorB.resetPosition();
+  ArmsMotorA.spinTo(-2000, degrees, 200, rpm, false);
+  ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-100, deg, 100, rpm, false);
+  LeftMotor.spinTo(-100, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(280, deg, 100, rpm, false);
+  LeftMotor.spinTo(-280, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(1250, deg, 100, rpm, false);
+  LeftMotor.spinTo(1250, deg, 100, rpm);
+
+  wait(0.5, sec);
+  Arms.spin(forward, 200, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-50, deg, 100, rpm, false);
+  LeftMotor.spinTo(-50, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-350, deg, 100, rpm, false);
+  LeftMotor.spinTo(350, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(75, deg, 100, rpm, false);
+  LeftMotor.spinTo(75, deg, 100, rpm);
+
+  wait(0.5, sec);
+  ArmsMotorA.resetPosition();
+  ArmsMotorB.resetPosition();
+  Arms.stop();
+  ArmsMotorA.spinTo(-2000, degrees, 200, rpm, false);
+  ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(240, deg, 100, rpm, false);
+  LeftMotor.spinTo(-240, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(120, deg, 100, rpm, false);
+  LeftMotor.spinTo(120, deg, 100, rpm);
+
   }
 
 
