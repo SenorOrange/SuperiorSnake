@@ -27,7 +27,7 @@
 // LeftMotor            motor_group   7, 11           
 // RightMotor           motor_group   20, 18          
 // Controller1          controller                    
-// Arms                 motor_group   1, 10           
+// Intake                 motor_group   1, 10           
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 
@@ -267,7 +267,7 @@ void autonomous(void) {
   {
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
-  Arms.resetPosition();
+  Intake.resetPosition();
  //straight
   /*RightMotor.spinTo(390, deg, 100, rpm, false);
   LeftMotor.spinTo(390, deg, 100, rpm);
@@ -298,8 +298,8 @@ void autonomous(void) {
   wait(0.2, sec);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
-  //Arms
-  Arms.spinTo(-2009, deg, 350, rpm);
+  //Intake
+  Intake.spinTo(-2009, deg, 350, rpm);
   RightMotor.resetPosition();
   LeftMotor.resetPosition();
   //Backup
@@ -341,12 +341,9 @@ void autonomous(void) {
   RightMotor.spinTo(20, deg, 100, rpm, false);
   LeftMotor.spinTo(20, deg, 100, rpm);
 
-
   wait(0.5, sec);
-  ArmsMotorA.resetPosition();
-  ArmsMotorB.resetPosition();
-  ArmsMotorA.spinTo(-2000, degrees, 200, rpm, false);
-  ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
+  Intake.resetPosition();
+  Intake.spinTo(-2000, deg, 200, rpm);
 
   wait(0.5, sec);
   RightMotor.resetPosition();
@@ -367,7 +364,7 @@ void autonomous(void) {
   LeftMotor.spinTo(1250, deg, 100, rpm);
 
   wait(0.5, sec);
-  Arms.spin(forward, 200, rpm);
+  Intake.spin(forward, 200, rpm);
 
   wait(0.5, sec);
   RightMotor.resetPosition();
@@ -388,11 +385,8 @@ void autonomous(void) {
   LeftMotor.spinTo(75, deg, 100, rpm);
 
   wait(0.5, sec);
-  ArmsMotorA.resetPosition();
-  ArmsMotorB.resetPosition();
-  Arms.stop();
-  ArmsMotorA.spinTo(-2000, degrees, 200, rpm, false);
-  ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
+  Intake.resetPosition();
+  Intake.spinTo(-2000, deg, 200, rpm);
 
   wait(0.5, sec);
   RightMotor.resetPosition();
@@ -406,9 +400,33 @@ void autonomous(void) {
   RightMotor.spinTo(120, deg, 100, rpm, false);
   LeftMotor.spinTo(120, deg, 100, rpm);
 
+  wait(0.5, sec);
+  Intake.spin(forward, 200, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-440, deg, 100, rpm, false);
+  LeftMotor.spinTo(440, deg, 100, rpm);
+
+  wait(0.5, sec);
+  Wings.spinFor(forward, 270, deg, 200, rpm);
+  
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(750, deg, 100, rpm, false);
+  LeftMotor.spinTo(750, deg, 100, rpm);
+
+  wait(0.5, sec);
+  RightMotor.resetPosition();
+  LeftMotor.resetPosition();
+  RightMotor.spinTo(-100, deg, 100, rpm, false);
+  LeftMotor.spinTo(-100, deg, 100, rpm);
+
+  wait(0.5, sec);
+  Wings.spinFor(reverse, 270, deg, 200, rpm);
   }
-
-
 
   if(DefenceAuton == true)
   {
@@ -419,11 +437,8 @@ void autonomous(void) {
   LeftMotor.spinTo(850, deg, 100, rpm);
 
   wait(0.5, sec);
-  ArmsMotorA.resetPosition();
-  ArmsMotorB.resetPosition();
-  ArmsMotorA.spinTo(-2000, degrees, 200, rpm, false);
-  ArmsMotorB.spinTo(-2000, degrees, 200, rpm);
-  //Arms.spinTo(2000, degrees, 200, rpm);
+  Intake.resetPosition();
+  Intake.spinTo(-2000, deg, 200, rpm);
 
   wait(0.5, sec);
   RightMotor.resetPosition();
@@ -530,17 +545,17 @@ void usercontrol(void) {
     }
   
 
-    //Arms Code
+    //Intake Code
     if (Controller1.ButtonL1.pressing()) {
-      Arms.spin(reverse, 200, rpm);
+      Intake.spin(reverse, 200, rpm);
     }
 
     if (Controller1.ButtonR1.pressing()) {
-      Arms.spin(forward, 200, rpm);
+      Intake.spin(forward, 200, rpm);
     }
 
     if (Controller1.ButtonL2.pressing()) {
-      Arms.stop();
+      Intake.stop();
     }
 
     //Spinner Code
